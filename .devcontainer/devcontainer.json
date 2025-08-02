@@ -18,6 +18,10 @@
     "--security-opt",
     "label=disable"
   ],
+  "mounts": [
+    "source=C:\\Users\\RRBouchard\\Documents\\MyProjects\\VSCode\\HomeAssistantIntegrationHS110Plug\\custom_components,target=${containerWorkspaceFolder}/config/custom_components,type=bind",
+    "source=C:\\Users\\RRBouchard\\Documents\\MyProjects\\VSCode\\HomeAssistantIntegrationHS110Plug\\tests,target=${containerWorkspaceFolder}/config/tests,type=bind"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -39,8 +43,8 @@
         "python.testing.pytestArgs": ["--no-cov"],
         "pylint.importStrategy": "fromEnvironment",
         "editor.formatOnPaste": false,
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
+        "editor.formatOnSave": false,
+        "editor.formatOnType": false,
         "files.trimTrailingWhitespace": true,
         "terminal.integrated.profiles.linux": {
           "zsh": {
@@ -56,15 +60,18 @@
           "!include_dir_merge_list scalar",
           "!include_dir_merge_named scalar"
         ],
-        "[python]": {
-          "editor.defaultFormatter": "charliermarsh.ruff"
-        },
         "json.schemas": [
           {
             "fileMatch": ["homeassistant/components/*/manifest.json"],
             "url": "${containerWorkspaceFolder}/script/json_schemas/manifest_schema.json"
           }
-        ]
+        ],
+        "terminal.integrated.env.windows": {
+          "PYTHONPATH": "${workspaceFolder}/config"
+        },
+        // The next line can be omitted, unless you've modified the global default
+        "python.envFile": "${workspaceFolder}/.vscode/.env",
+        "python.linting.pylintArgs": ["--disable=F0401"]
       }
     }
   }

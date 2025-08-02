@@ -14,6 +14,36 @@
       "dependsOn": ["Compile English translations"]
     },
     {
+      "label": "Pytest-HS110",
+      "type": "shell",
+      "command": "PYTHONPATH=${workspaceFolder}${pathSeparator}config ${command:python.interpreterPath} -m pytest /workspaces/ha_core/config/tests/hs110_tests/ -vv  -o log_cli=true --log-cli-level=DEBUG",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Code Coverage - Test - HS110",
+      "detail": "Generate code coverage report for hs110 integration.",
+      "type": "shell",
+      "command": "PYTHONPATH=${workspaceFolder}${pathSeparator}config ${command:python.interpreterPath} -m pytest ${workspaceFolder}${pathSeparator}config${pathSeparator}/tests/hs110_tests --cov=custom_components.hs110 -vv --cov-report term-missing --durations-min=1 --durations=0 --numprocesses=auto",
+      "dependsOn": ["Compile English translations"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Pytest",
       "type": "shell",
       "command": "${command:python.interpreterPath} -m pytest --timeout=10 tests",
@@ -75,22 +105,6 @@
       "type": "shell",
       "command": "pylint homeassistant",
       "dependsOn": ["Install all Requirements"],
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "Code Coverage",
-      "detail": "Generate code coverage report for a given integration.",
-      "type": "shell",
-      "command": "${command:python.interpreterPath} -m pytest ./tests/components/${input:integrationName}/ --cov=homeassistant.components.${input:integrationName} --cov-report term-missing --durations-min=1 --durations=0 --numprocesses=auto",
-      "dependsOn": ["Compile English translations"],
       "group": {
         "kind": "test",
         "isDefault": true

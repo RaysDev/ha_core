@@ -47,7 +47,8 @@
       "request": "launch",
       "module": "pytest",
       "console": "integratedTerminal",
-      "args": ["-vv", "${file}"]
+      "args": ["-vv", "-o", "log_cli=true", "--log-cli-level=DEBUG", "${file}"],
+      "env": {"PYTHONPATH": "${workspaceFolder}${pathSeparator}config$"}
     },
     {
       // Debug by attaching to local Home Assistant server using Remote Python Debugger.
